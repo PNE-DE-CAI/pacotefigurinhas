@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pacotes de Figurinhas — Copa REPLANEJAMENTO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+@media print{
+  body{background:#fff!important;padding:0!important}
+  .page{max-width:100%;padding:0}
+  .page-title,.subtitle,.footer,.print-btn,.legend{display:none!important}
+  .pack{break-inside:avoid;page-break-inside:avoid;border:2px solid #0a2f6c!important;box-shadow:none!important;margin:8px 0!important}
+  .pack-hdr{background:#0a2f6c!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sticker-row:nth-child(even){background:#f0f4f8!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .grid{gap:10px}
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#e8ecf1;min-height:100vh;padding:20px;color:#1e293b}
+.page{max-width:900px;margin:0 auto}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:#0a2f6c;letter-spacing:.05em;text-align:center;margin-bottom:4px}
+.subtitle{font-size:.85rem;color:#64748b;text-align:center;margin-bottom:20px}
+.print-btn{display:block;margin:0 auto 24px;background:#0a2f6c;color:#fff;border:none;border-radius:40px;padding:12px 32px;font-family:'Inter',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s}
+.print-btn:hover{background:#d32f2f;transform:scale(1.03)}
+.legend{display:flex;justify-content:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;font-size:.72rem;color:#64748b}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend .dot{width:10px;height:10px;border-radius:3px}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+
+.pack{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.08);border:1px solid #e2e8f0;transition:transform .2s}
+.pack:hover{transform:translateY(-2px)}
+.pack-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;color:#fff}
+.pack-num{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.04em;line-height:1}
+.pack-label{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.pack-flag{font-size:1.5rem}
+
+.sticker-row{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid #f1f5f9;transition:background .15s}
+.sticker-row:last-child{border-bottom:none}
+.sticker-row:nth-child(even){background:#f8fafc}
+.stk-flag{font-size:1.8rem;line-height:1;min-width:32px;text-align:center}
+.stk-info{flex:1;min-width:0}
+.stk-country{font-size:.78rem;font-weight:700;color:#0a2f6c;line-height:1.2}
+.stk-school{font-size:.6rem;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stk-code{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;color:#d32f2f;background:#fff5f5;border:1px solid #fecaca;border-radius:8px;padding:4px 12px;letter-spacing:.08em;white-space:nowrap;user-select:all}
+
+.pack-footer{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#f8fafc;border-top:1px solid #f1f5f9}
+.pack-footer img{height:20px;border-radius:4px}
+.pack-footer span{font-size:.55rem;color:#94a3b8;letter-spacing:.04em}
+.pack-total{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#94a3b8}
+
+footer{text-align:center;margin-top:28px;font-size:.7rem;color:#94a3b8;padding:12px;border-top:1px solid #e2e8f0}
+
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-title">Pacotes de Figurinhas — Copa REPLANEJAMENTO</h1>
+  <p class="subtitle">17 pacotes &bull; 4 figurinhas cada &bull; 67 escolas & URE no total</p>
+  <button class="print-btn" onclick="window.print()">&#128424; Imprimir Pacotes</button>
+  <div class="legend">
+    <span><span class="dot" style="background:#009c3b"></span>Américas Sul</span>
+    <span><span class="dot" style="background:#006847"></span>Américas N/C</span>
+    <span><span class="dot" style="background:#002395"></span>Europa I</span>
+    <span><span class="dot" style="background:#c8102e"></span>Europa II</span>
+    <span><span class="dot" style="background:#ff6600"></span>Europa III</span>
+    <span><span class="dot" style="background:#d4a017"></span>África</span>
+    <span><span class="dot" style="background:#de2910"></span>Ásia I</span>
+    <span><span class="dot" style="background:#007a33"></span>Ásia II</span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <footer>Copa REPLANEJAMENTO &bull; URE Caieiras &bull; Seduc SP &bull; Material exclusivo do Formador</footer>
+</div>
+<script>
+const S=[
+{n:1,co:'Brasil',f:'🇧🇷',fn:'ALFRIED THEODOR WEISZFLOG',cd:'A7F3K'},
+{n:2,co:'Argentina',f:'🇦🇷',fn:'PEDRO GALRAO DO NASCIMENTO',cd:'9X2QW'},
+{n:3,co:'Colômbia',f:'🇨🇴',fn:'ALBINO FIORE',cd:'M4T8L'},
+{n:4,co:'Uruguai',f:'🇺🇾',fn:'ARMANDO SESTINI',cd:'Z6P1R'},
+{n:5,co:'Chile',f:'🇨🇱',fn:'ADAIL JARBAS DUCLOS',cd:'B3N7Y'},
+{n:6,co:'Paraguai',f:'🇵🇾',fn:'OTTO WEISZFLOG',cd:'H8V2C'},
+{n:7,co:'Peru',f:'🇵🇪',fn:'ISAIAS LUIZ MATIAZZO',cd:'Q5D9X'},
+{n:8,co:'Equador',f:'🇪🇨',fn:'WALTHER WEISZFLOG',cd:'L2K8M'},
+{n:9,co:'Bolívia',f:'🇧🇴',fn:'JOSE ROBERTO MELCHIOR DR',cd:'T7A4Z'},
+{n:10,co:'México',f:'🇲🇽',fn:'IRACI SARTORI VIEIRA DA SILVA',cd:'W1R6P'},
+{n:11,co:'EUA',f:'🇺🇸',fn:'ODARICO OLIVEIRA NASCIMENTO',cd:'C9F3J'},
+{n:12,co:'Canadá',f:'🇨🇦',fn:'NIDE ZAIM CARDOSO',cd:'E4X2N'},
+{n:13,co:'Costa Rica',f:'🇨🇷',fn:'LENITA CORREA CAMARGO',cd:'U8M5B'},
+{n:14,co:'Panamá',f:'🇵🇦',fn:'ULYSSES SANCHES RAMIRES',cd:'G7Q1L'},
+{n:15,co:'Jamaica',f:'🇯🇲',fn:'ALADINO POLON',cd:'P6D2T'},
+{n:16,co:'Honduras',f:'🇭🇳',fn:'DR. MARIO TOLEDO DE MORAES',cd:'Y3H9R'},
+{n:17,co:'Venezuela',f:'🇻🇪',fn:'ELCIO JOSE PEREIRA COTRIM',cd:'K1Z8V'},
+{n:18,co:'França',f:'🇫🇷',fn:'CARLOS AUGUSTO DE PADUA FLEURY',cd:'D5L4W'},
+{n:19,co:'Alemanha',f:'🇩🇪',fn:'ARTHUR WEINGRILL',cd:'R2C7M'},
+{n:20,co:'Inglaterra',f:'🏴',fn:'ANA MARIA GARRIDO ORLANDIN',cd:'43TRE'},
+{n:21,co:'Espanha',f:'🇪🇸',fn:'JOAQUIM MARQUES DA SILVA SOBRINHO',cd:'JN5T3'},
+{n:22,co:'Itália',f:'🇮🇹',fn:'AZEVEDO SOARES',cd:'LKMFE'},
+{n:23,co:'Portugal',f:'🇵🇹',fn:'SUZANA DIAS',cd:'67EHJ'},
+{n:24,co:'Holanda',f:'🇳🇱',fn:'LUIZ ALEXANDRE DOS SANTOS',cd:'JKM44'},
+{n:25,co:'Bélgica',f:'🇧🇪',fn:'KATIA MARIA TARIFA LEME TONELLI',cd:'PLS42'},
+{n:26,co:'Croácia',f:'🇭🇷',fn:'FRANCISCO GONCALVES VIEIRA',cd:'FDR63'},
+{n:27,co:'Sérvia',f:'🇷🇸',fn:'PEDRO LELIS DE SOUZA',cd:'FIG27'},
+{n:28,co:'Polônia',f:'🇵🇱',fn:'ELVIRA PARADA MANGA',cd:'X9P6A'},
+{n:29,co:'Suíça',f:'🇨🇭',fn:'HERMELINA DE ALBUQUERQUE PASSARELLA',cd:'F8J3N'},
+{n:30,co:'Dinamarca',f:'🇩🇰',fn:'DOMINGOS CAMBIAGHI',cd:'V1T5Q'},
+{n:31,co:'Suécia',f:'🇸🇪',fn:'MARIA ZEZA GOMES DE OLIVEIRA',cd:'S7U2K'},
+{n:32,co:'Noruega',f:'🇳🇴',fn:'CELESTINA VALENTE LENGENFELDER',cd:'N4W6B'},
+{n:33,co:'Tchéquia',f:'🇨🇿',fn:'BAIRRO DO ITAIM',cd:'A2R8Y'},
+{n:34,co:'Áustria',f:'🇦🇹',fn:'BENEDITO FAGUNDES MARQUES',cd:'Z5M1C'},
+{n:35,co:'Turquia',f:'🇹🇷',fn:'APARECIDO ROBERTO TONELLOTTI',cd:'H3K9P'},
+{n:36,co:'Rússia',f:'🇷🇺',fn:'WALTER RIBAS DE ANDRADE',cd:'Q7X4D'},
+{n:37,co:'Ucrânia',f:'🇺🇦',fn:'PEDRO PAULO DE AGUIAR',cd:'L8V6T'},
+{n:38,co:'País de Gales',f:'🏴',fn:'PAULO DUARTE',cd:'T1F2R'},
+{n:39,co:'Escócia',f:'🏴',fn:'ALBERTO GRAF',cd:'W5P9M'},
+{n:40,co:'Irlanda',f:'🇮🇪',fn:'BUENO DE AZEVEDO FILHO',cd:'C4D7A'},
+{n:41,co:'Islândia',f:'🇮🇸',fn:'VINCENZO LOBASSI',cd:'E6J3K'},
+{n:42,co:'Finlândia',f:'🇫🇮',fn:'JARDIM SAO FRANCISCO',cd:'U2Y8L'},
+{n:43,co:'Grécia',f:'🇬🇷',fn:'JOSE DE BARROS MARTINS EDITOR',cd:'G9N5X'},
+{n:44,co:'Marrocos',f:'🇲🇦',fn:'PIETRO PETRI',cd:'P3Q1V'},
+{n:45,co:'Senegal',f:'🇸🇳',fn:'IVONE DOS ANJOS DA SILVA CAMPOS',cd:'Y7T2F'},
+{n:46,co:'Camarões',f:'🇨🇲',fn:'ZILTON BICUDO',cd:'K8M4C'},
+{n:47,co:'Nigéria',f:'🇳🇬',fn:'JARDIM SILVIA II',cd:'D1Z6W'},
+{n:48,co:'Gana',f:'🇬🇭',fn:'JOCIMARA VIEIRA DA SILVA',cd:'R5H9N'},
+{n:49,co:'Tunísia',f:'🇹🇳',fn:'OZILDE ALBUQUERQUE PASSARELLA',cd:'X3L7B'},
+{n:50,co:'Egito',f:'🇪🇬',fn:'OLINDO DARTORA',cd:'FIG50'},
+{n:51,co:'África do Sul',f:'🇿🇦',fn:'BENEDITO APARECIDO TAVARES',cd:'F2A8Q'},
+{n:52,co:'Japão',f:'🇯🇵',fn:'ISAURA VALENTINI HANSER',cd:'V6C1R'},
+{n:53,co:'Coreia do Sul',f:'🇰🇷',fn:'JOSE CARLOS DA SILVA JUNIOR',cd:'S4P5T'},
+{n:54,co:'Irã',f:'🇮🇷',fn:'JARDIM DAS ROSAS',cd:'S8M1N'},
+{n:55,co:'Arábia Saudita',f:'🇸🇦',fn:'CHACARA CAMPONESA JARDIM VASSOURAS',cd:'N9W3K'},
+{n:56,co:'Austrália',f:'🇦🇺',fn:'ROGERIO LEVORIN',cd:'A6X2M'},
+{n:57,co:'China',f:'🇨🇳',fn:'ISAURA DE MIRANDA BOTTO',cd:'Z8F7D'},
+{n:58,co:'Índia',f:'🇮🇳',fn:'NAIR HANNICKEL ROMARO',cd:'H1Q4L'},
+{n:59,co:'Catar',f:'🇶🇦',fn:'JOSE PARADA PROFESSOR',cd:'Q2V9Y'},
+{n:60,co:'Emirados Árabes',f:'🇦🇪',fn:'AFONSO MORENO',cd:'L3R6P'},
+{n:61,co:'Nova Zelândia',f:'🇳🇿',fn:'PARQUE CENTO E VINTE II',cd:'T5C8N'},
+{n:62,co:'Iraque',f:'🇮🇶',fn:'JARDIM ALEGRIA II',cd:'W4D1K'},
+{n:63,co:'Omã',f:'🇴🇲',fn:'DR. NELSON MANZANARES',cd:'C7M2A'},
+{n:64,co:'Bahrein',f:'🇧🇭',fn:'BAIRRO JUNDIAIZINHO',cd:'E9P6X'},
+{n:65,co:'Vietnã',f:'🇻🇳',fn:'BELEM DA SERRA',cd:'U3H5T'},
+{n:66,co:'Tailândia',f:'🇹🇭',fn:'LYDIA SCALET WALKER',cd:'G1L8R'},
+{n:67,co:'Indonésia',f:'🇮🇩',fn:'RITUCO MITANI',cd:'P2K7W'},
+{n:68,co:'Malásia',f:'🇲🇾',fn:'URE-CAIEIRAS (Geral)',cd:'Y4A9C'}
+];
+
+const COLORS=['#009c3b','#006847','#002395','#c8102e','#ff6600','#d4a017','#de2910','#007a33'];
+const ICONS=['🌎','🗽','🏰','⚽','🏔️','🌍','🏯','🌏'];
+const GRP=['Américas Sul','Américas N/C','Europa I','Europa II','Europa III','África','Ásia I','Ásia II'];
+
+const grid=document.getElementById('grid');
+
+for(let p=0;p<17;p++){
+  const start=p*4;
+  const items=S.slice(start,start+4);
+  const grpIdx=Math.floor(start/8);
+  const col=COLORS[grpIdx]||'#0a2f6c';
+  const ic=ICONS[grpIdx]||'⭐';
+  const gn=GRP[grpIdx]||'Geral';
+  const pad=String(p+1).padStart(2,'0');
+
+  let rows='';
+  items.forEach(it=>{
+    const shortFn=it.fn.length>30?it.fn.substring(0,28)+'...':it.fn;
+    rows+=`<div class="sticker-row"><span class="stk-flag">${it.f}</span><div class="stk-info"><div class="stk-country">${String(it.n).padStart(2,'0')} — ${it.co}</div><div class="stk-school">${shortFn}</div></div><span class="stk-code">${it.cd}</span></div>`;
+  });
+
+  const pack=document.createElement('div');
+  pack.className='pack';
+  pack.innerHTML=`
+    <div class="pack-hdr" style="background:${col}">
+      <div><div class="pack-num">PACOTE ${pad}</div><div class="pack-label">${ic} ${gn}</div></div>
+      <div class="pack-flag">${items.map(i=>i.f).join(' ')}</div>
+    </div>
+    ${rows}
+    <div class="pack-footer">
+      <img src="https://i.ibb.co/0p01LzxB/logo3de.jpg" alt="">
+      <span>URE Caieiras · Seduc SP</span>
+      <span class="pack-total">${items.length} figurinhas</span>
+    </div>
+  `;
+  grid.appendChild(pack);
+}
+</script>
+</body>
+</html>
